@@ -1,0 +1,79 @@
+version: '3.9'
+
+services:
+
+#  frontend:
+#    build:
+#      context: .
+#      dockerfile: frontend.Dockerfile
+#    ports:
+#      - 20080:80
+#    restart: always
+#    volumes:
+#      # Re-use local composer cache via host-volume
+#      - ~/.composer-docker/cache:/root/.composer/cache:delegated
+#      # Mount source-code for development
+##      - ${APP_PATH_HOST}:/app
+##      - ./app/frontend/vhost.conf:/etc/apache2/sites-enabled/000-default.conf
+
+  backend:
+    build:
+      context: .
+      dockerfile: backend.Dockerfile
+    ports:
+      - 21080:80
+    restart: always
+    volumes:
+      # Re-use local composer cache via host-volume
+      - ~/.composer-docker/cache:/root/.composer/cache:delegated
+      # Mount source-code for development
+#      - ${APP_PATH_HOST}:/app
+#      - ./app/backend/vhost.conf:/etc/apache2/sites-enabled/000-default.conf
+    depends_on:
+      - mysql
+    links:
+      - mysql
+
+#  api:
+#    build:
+#      context: .
+#      dockerfile: api.Dockerfile
+#    ports:
+#      - 22080:80
+#    restart: always
+#    volumes:
+#      # Re-use local composer cache via host-volume
+#      - ~/.composer-docker/cache:/root/.composer/cache:delegated
+#      # Mount source-code for development
+##      - ${APP_PATH_HOST}:/app
+##      - ./app/api/vhost.conf:/etc/apache2/sites-enabled/000-default.conf
+#    depends_on:
+#      - mysql
+#    links:
+#      - mysql
+
+  mysql:
+    build:
+      context: .
+      dockerfile: mysql.Dockerfile
+    environment:
+      - MYSQL_ROOT_PASSWORD=user
+      - MYSQL_DATABASE=yii_db
+      - MYSQL_USER=user
+      - MYSQL_PASSWORD=user
+    restart: always
+    ports:
+      - 3306:3306
+    volumes:
+      - ./databases:/var/lib/mysql
+    container_name: mysql
+#  phpmyadmin:
+#    image: phpmyadmin
+#    restart: always
+#    ports:
+#      - 127.0.0.1:8080:80
+#    environment:
+#      - PMA_ARBITRARY=1
+#      - PMA_HOST=mysql
+#      - PMA_USER=user
+#      - PMA_PASSWORD=user
