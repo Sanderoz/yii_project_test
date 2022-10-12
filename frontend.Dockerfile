@@ -7,6 +7,6 @@ RUN sed -i -e 's|/app/web|/app/frontend/web|g' /etc/apache2/sites-available/000-
 EXPOSE 20080
 
 COPY ./app /app/
-RUN chmod +w,+x,+r /app/frontend/web/assets
+RUN chmod -R 777 /app/frontend/web/assets && chmod -R 777 /app/frontend/runtime
 
 #WORKDIR /app/frontend/

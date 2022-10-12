@@ -7,7 +7,8 @@ RUN sed -i -e 's|/app/web|/app/backend/web|g' /etc/apache2/sites-available/000-d
 COPY ./app /app/
 #COPY ./app/backend/vhost.conf /etc/apache2/sites-enabled/
 
-RUN chmod +w,+x,+r /app/backend/web/assets
+RUN chmod -R 777 /app/backend/web/assets && chmod -R 777 /app/backend/runtime
+
 #RUN chmod -R +w,+x,+r /app/backend/web/
 
 #WORKDIR /var/www/html/backend/
