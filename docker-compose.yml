@@ -53,9 +53,7 @@ services:
       - mysql
 
   mysql:
-    build:
-      context: .
-      dockerfile: mysql.Dockerfile
+    image: mysql:5.7
     environment:
       - MYSQL_ROOT_PASSWORD=user
       - MYSQL_DATABASE=yii_db
