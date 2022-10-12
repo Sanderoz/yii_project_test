@@ -2,19 +2,19 @@ version: '3.9'
 
 services:
 
-#  frontend:
-#    build:
-#      context: .
-#      dockerfile: frontend.Dockerfile
-#    ports:
-#      - 20080:80
-#    restart: always
-#    volumes:
-#      # Re-use local composer cache via host-volume
-#      - ~/.composer-docker/cache:/root/.composer/cache:delegated
-#      # Mount source-code for development
-##      - ${APP_PATH_HOST}:/app
-##      - ./app/frontend/vhost.conf:/etc/apache2/sites-enabled/000-default.conf
+  frontend:
+    build:
+      context: .
+      dockerfile: frontend.Dockerfile
+    ports:
+      - 20080:80
+    restart: always
+    volumes:
+      # Re-use local composer cache via host-volume
+      - ~/.composer-docker/cache:/root/.composer/cache:delegated
+      # Mount source-code for development
+#      - ${APP_PATH_HOST}:/app
+#      - ./app/frontend/vhost.conf:/etc/apache2/sites-enabled/000-default.conf
 
   backend:
     build:
@@ -34,23 +34,23 @@ services:
     links:
       - mysql
 
-#  api:
-#    build:
-#      context: .
-#      dockerfile: api.Dockerfile
-#    ports:
-#      - 22080:80
-#    restart: always
-#    volumes:
-#      # Re-use local composer cache via host-volume
-#      - ~/.composer-docker/cache:/root/.composer/cache:delegated
-#      # Mount source-code for development
-##      - ${APP_PATH_HOST}:/app
-##      - ./app/api/vhost.conf:/etc/apache2/sites-enabled/000-default.conf
-#    depends_on:
-#      - mysql
-#    links:
-#      - mysql
+  api:
+    build:
+      context: .
+      dockerfile: api.Dockerfile
+    ports:
+      - 22080:80
+    restart: always
+    volumes:
+      # Re-use local composer cache via host-volume
+      - ~/.composer-docker/cache:/root/.composer/cache:delegated
+      # Mount source-code for development
+#      - ${APP_PATH_HOST}:/app
+#      - ./app/api/vhost.conf:/etc/apache2/sites-enabled/000-default.conf
+    depends_on:
+      - mysql
+    links:
+      - mysql
 
   mysql:
     build:
@@ -67,6 +67,7 @@ services:
     volumes:
       - ./databases:/var/lib/mysql
     container_name: mysql
+
 #  phpmyadmin:
 #    image: phpmyadmin
 #    restart: always
