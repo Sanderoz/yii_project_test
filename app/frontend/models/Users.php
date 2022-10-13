@@ -2,17 +2,7 @@
 
 namespace frontend\models;
 
-use api\models\LoginForm;
-use DateTime;
-use frontend\controllers\Auth;
-use Yii;
 use yii\base\Model;
-use yii\base\NotSupportedException;
-use yii\behaviors\TimestampBehavior;
-use yii\db\ActiveRecord;
-use yii\filters\AccessControl;
-use yii\filters\auth\HttpBasicAuth;
-use yii\web\IdentityInterface;
 
 /**
  * Users model

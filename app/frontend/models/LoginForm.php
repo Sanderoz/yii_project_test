@@ -2,8 +2,8 @@
 
 namespace frontend\models;
 
-use frontend\controllers\ApiController;
-use frontend\controllers\Auth;
+use frontend\libraries\Api;
+use frontend\libraries\Auth;
 use Yii;
 use yii\base\Model;
 
@@ -41,7 +41,7 @@ class LoginForm extends Model
     public function login()
     {
         if ($this->validate()) {
-            return ApiController::getInstance()->login($this->email, $this->password);
+            return Api::getInstance()->login($this->email, $this->password);
         }
         
         return false;

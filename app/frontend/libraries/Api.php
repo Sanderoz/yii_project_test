@@ -1,12 +1,12 @@
 <?php
 
-namespace frontend\controllers;
+namespace frontend\libraries;
 
 use yii\helpers\Json;
 use yii\httpclient\Client;
 use yii\httpclient\Response;
 
-class ApiController extends Instance
+class Api extends Instance
 {
     private Client $client;
     private string $host = 'api';

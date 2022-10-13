@@ -6,7 +6,7 @@
 
 use common\widgets\Alert;
 use frontend\assets\AppAsset;
-use frontend\controllers\Auth;
+use frontend\libraries\Auth;
 use yii\bootstrap5\Breadcrumbs;
 use yii\bootstrap5\Html;
 use yii\bootstrap5\Nav;

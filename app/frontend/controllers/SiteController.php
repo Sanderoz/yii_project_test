@@ -2,6 +2,8 @@
 
 namespace frontend\controllers;
 
+use frontend\libraries\Api;
+use frontend\libraries\Auth;
 use frontend\models\LoginForm;
 use frontend\models\Users;
 use Yii;
@@ -41,7 +43,7 @@ class SiteController extends Controller
      */
     public function actionIndex()
     {
-        $comments = ApiController::getInstance()->getData('/comments')->toArray();
+        $comments = Api::getInstance()->getData('/comments')->toArray();
         $user = new Users();
         $user->setAttributes(Auth::getInstance()->getUser());
         $user->id = Auth::getInstance()->getUser()['id'];

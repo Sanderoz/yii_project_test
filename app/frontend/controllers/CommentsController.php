@@ -2,6 +2,7 @@
 
 namespace frontend\controllers;
 
+use frontend\libraries\Api;
 use frontend\models\Comments;
 use Yii;
 use yii\helpers\Json;
@@ -16,7 +17,7 @@ class CommentsController extends Controller
     public function actionStatus()
     {
         if (Yii::$app->request->isAjax and !empty(Yii::$app->request->post('id'))) {
-            return Json::encode(ApiController::getInstance()->getData('/comments/status', 'post', ['id' => Yii::$app->request->post('id'), 'updated_at' => Yii::$app->request->post('updated_at')])->toArray());
+            return Json::encode(Api::getInstance()->getData('/comments/status', 'post', ['id' => Yii::$app->request->post('id'), 'updated_at' => Yii::$app->request->post('updated_at')])->toArray());
         }
         return false;
     }
@@ -28,7 +29,7 @@ class CommentsController extends Controller
     public function actionDelete()
     {
         if (Yii::$app->request->isAjax and !empty(Yii::$app->request->post('id'))) {
-            if (Json::encode(ApiController::getInstance()->getData('/comments/' . Yii::$app->request->post('id'), 'delete')->toArray()))
+            if (Json::encode(Api::getInstance()->getData('/comments/' . Yii::$app->request->post('id'), 'delete')->toArray()))
                 return Json::encode(['id' => Yii::$app->request->post('id')]);
         }
         return false;
@@ -39,7 +40,7 @@ class CommentsController extends Controller
         $model = new Comments();
 
         if ($this->request->isPost and $model->load($this->request->post())) {
-            ApiController::getInstance()->getData('/comments', 'post', ['comment' => $model->comment, 'status' => $model->status]);
+            Api::getInstance()->getData('/comments', 'post', ['comment' => $model->comment, 'status' => $model->status]);
             $this->redirect('/');
         }
 

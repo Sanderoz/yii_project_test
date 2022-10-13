@@ -1,6 +1,6 @@
 <?php
 
-namespace frontend\controllers;
+namespace frontend\libraries;
 
 use Yii;
 use yii\helpers\Json;
@@ -18,7 +18,7 @@ class Auth extends Instance
     private function setUser()
     {
         if (static::getToken()) {
-            $this->user = ApiController::getInstance()->getData('/users/data')->toArray();
+            $this->user = Api::getInstance()->getData('/users/data')->toArray();
         }
     }
 
