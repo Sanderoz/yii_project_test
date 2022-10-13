@@ -66,13 +66,13 @@ services:
 #      - ${DB_PATH_HOST}:/var/lib/mysql
     container_name: mysql
 
-  phpmyadmin:
-    image: phpmyadmin
-    restart: always
-    ports:
-      - 127.0.0.1:8080:80
-    environment:
-      - PMA_ARBITRARY=1
-      - PMA_HOST=mysql
-      - PMA_USER=user
-      - PMA_PASSWORD=user
+#  phpmyadmin:
+#    image: phpmyadmin
+#    restart: always
+#    ports:
+#      - 127.0.0.1:8080:80
+#    environment:
+#      - PMA_ARBITRARY=1
+#      - PMA_HOST=mysql
+#      - PMA_USER=user
+#      - PMA_PASSWORD=user
